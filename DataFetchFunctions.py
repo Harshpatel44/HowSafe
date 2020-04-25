@@ -3,6 +3,7 @@ import requests
 import json
 import datetime
 import time
+import DbConnect
 from pymongo import MongoClient
 
 class Fetch():
@@ -12,28 +13,18 @@ class Fetch():
 
     #adds the sources
     def SourcesAdd(self,source,tag):
-        mongo_object,connection=self.ConnectMongo()
+        mongo_object,connection=DbConnect.Database.ConnectMongo(self)
         mongo_object = mongo_object['data_sources']
         mongo_object.insert({"tag":tag ,"url":source })
         connection.close()
 
-    #connects to mongo
-    def ConnectMongo(self):
-        connection = MongoClient('localhost', 27017)
-        database = connection["news"]
-        return database,connection
-
     #print sources
-    def ShowMongo(self,collection):
-        mongo_object,connection = self.ConnectMongo()
-        mongo_object = mongo_object[str(collection)]
-        for x in mongo_object.find():
-            print(x)
-        connection.close()
+    def ShowCollection(self,collection):
+        DbConnect.Database.ShowMongo(self,collection)
 
     #storing data to mongodb
     def dataAdd(self,list):
-        mongo_object,connection=self.ConnectMongo()
+        mongo_object,connection=DbConnect.Database.ConnectMongo(self)
         mongo_object = mongo_object['data']
 
         """list is the current fetched data. this is to check if the current fetched data already exists in the db. if it exists
@@ -58,7 +49,7 @@ class Fetch():
 
     #main program which handles fetching sources, fetching data from sources, storing in mongo
     def RunEngine(self):
-        mongo_object,connection=self.ConnectMongo()
+        mongo_object,connection=DbConnect.Database.ConnectMongo(self)
         mongo_object = mongo_object['data_sources']
         main_list = []
         for x in mongo_object.find():
@@ -90,7 +81,7 @@ class Fetch():
 
 fetch = Fetch()
 while 1:
-    time.sleep(300)
+    time.sleep()
     print(fetch.RunEngine())
 
 #fetch.SourcesAdd("http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=0fc0e9b54d5d4389b807d66a86fcee50","GoogleNews")

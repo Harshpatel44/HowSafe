@@ -6,16 +6,21 @@ import urllib3
 import time
 from bs4 import BeautifulSoup
 key="0fc0e9b54d5d4389b807d66a86fcee50"
-the_hindu_url="http://newsapi.org/v2/top-headlines?country=in&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
-google_news_url="http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
+top20="http://newsapi.org/v2/top-headlines?country=in&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
 
+google_news_url="http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
+finance="http://newsapi.org/v2/top-headlines?sources=financial-times&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
+
+general_url="http://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
 business_url="http://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
+science_url="http://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
 sports_url="http://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
 tech_url="http://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
 entertainment_url="http://newsapi.org/v2/top-headlines?country=in&category=entertainment&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
+
 politics="http://news.google.com/news/headlines/section/topic/POLITICS.en_in/Politics?ned=in&hl=en-IN&gl=IN"
 world="http://news.google.com/news/headlines/section/topic/WORLD.en_in/World?ned=in&hl=en-IN&gl=IN"
-finance="http://newsapi.org/v2/top-headlines?sources=financial-times&apiKey=0fc0e9b54d5d4389b807d66a86fcee50"
+
 
 topics=[]
 topics.extend((the_hindu_url,business_url,sports_url,tech_url,entertainment_url,politics,world,finance))
