@@ -64,18 +64,21 @@ class Fetch():
         response = requests.get(url[1])
         data = json.loads(response.text)
         #print(data['articles'][1]['title'])
-        for i in data['articles']:
-            data_dictionary = {}
-            data_dictionary['title']=i['title']
-            data_dictionary['content']=i['content']
-            data_dictionary['description']=i['description']
-            data_dictionary['author']=i['author']
-            data_dictionary['publishedAt']=i['publishedAt']
-            data_dictionary['url']=i['url']
-            data_dictionary['urlToImage']=i['urlToImage']
-            data_dictionary['date_stamp']=str(datetime.datetime.now().date())
-            data_dictionary['time_stamp']=str(datetime.datetime.now().time())
-            list.append(data_dictionary)
+        try:
+            for i in data['articles']:
+                data_dictionary = {}
+                data_dictionary['title']=i['title']
+                data_dictionary['content']=i['content']
+                data_dictionary['description']=i['description']
+                data_dictionary['author']=i['author']
+                data_dictionary['publishedAt']=i['publishedAt']
+                data_dictionary['url']=i['url']
+                data_dictionary['urlToImage']=i['urlToImage']
+                data_dictionary['date_stamp']=str(datetime.datetime.now().date())
+                data_dictionary['time_stamp']=str(datetime.datetime.now().time())
+                list.append(data_dictionary)
+        except:
+            pass
         return {"tag":url[0],"content":list}
 
 
