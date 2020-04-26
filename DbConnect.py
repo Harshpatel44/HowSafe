@@ -1,5 +1,6 @@
 from pymongo import MongoClient
 
+#class used to connect to database
 class Database():
     def __init__(self):
         print()
@@ -7,6 +8,7 @@ class Database():
         connection = MongoClient('localhost', 27017)
         database = connection["news"]
         return database, connection
+
     def ShowMongo(self,collection):
         mongo_object,connection = self.ConnectMongo()
         mongo_object = mongo_object[str(collection)]

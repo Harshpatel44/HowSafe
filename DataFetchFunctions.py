@@ -4,27 +4,21 @@ import json
 import datetime
 import time
 import DbConnect
-from pymongo import MongoClient
 
+
+## Fetch class is to fetch the data from the sources and store it to mongodb
 class Fetch():
     #constructor
     def __init__(self):
         self.flag=True
 
-    #adds the sources
-    def SourcesAdd(self,source,tag):
-        mongo_object,connection=DbConnect.Database.ConnectMongo(self)
-        mongo_object = mongo_object['data_sources']
-        mongo_object.insert({"tag":tag ,"url":source })
-        connection.close()
-
     #print sources
     def ShowCollection(self,collection):
-        DbConnect.Database.ShowMongo(self,collection)
+        DbConnect.Database.ShowMongo(DbConnect.Database(),collection)
 
     #storing data to mongodb
     def dataAdd(self,list):
-        mongo_object,connection=DbConnect.Database.ConnectMongo(self)
+        mongo_object,connection=DbConnect.Database.ConnectMongo(DbConnect.Database())
         mongo_object = mongo_object['data']
 
         """list is the current fetched data. this is to check if the current fetched data already exists in the db. if it exists
@@ -33,23 +27,29 @@ class Fetch():
 
         if (mongo_object.count() == 0): #checks if it is empty or not.
             mongo_object.insert(list)
+            print("found count=0, all news inserted")
         else:  #does not allow duplicate news to be stored.
             for i1 in list:
-                for j1 in mongo_object.find({"content.date_stamp": str(datetime.datetime.now().date()),"tag":i1['tag']}):
-                    for i2 in i1['content']:
-                        flag=True
-                        for j2 in j1['content']:
-                            if(i2['title'] == j2['title']):
-                                flag=False
-                        if(flag==True):
-                            mongo_object.update({'tag': i1['tag']}, {'$push': {'content': i2}})
-                            print('added news: ',i2['title'])
+                if(mongo_object.count({"tag":i1['tag']})==0):
+                    mongo_object.insert(i1)
+                    print("new tag news found, all news inserted")
+                else:
+                    for j1 in mongo_object.find({ "$or":[{"content.date_stamp": str(datetime.datetime.now().date())},{"content.date_stamp": str(datetime.datetime.now().date() - datetime.timedelta(days=1))}],"tag":i1['tag']}):
+                        for i2 in i1['content']:
+                            flag=True
+                            for j2 in j1['content']:
+                                if(i2['title'] == j2['title']):
+                                    flag=False
+                            if(flag==True):
+                                print(i1['tag'])
+                                mongo_object.update({'tag': i1['tag']}, {'$push': {'content': i2}})
+                                print('added news: ',i2['title'])
         connection.close()
         return 'data updated'
 
     #main program which handles fetching sources, fetching data from sources, storing in mongo
     def RunEngine(self):
-        mongo_object,connection=DbConnect.Database.ConnectMongo(self)
+        mongo_object,connection=DbConnect.Database.ConnectMongo(DbConnect.Database())
         mongo_object = mongo_object['data_sources']
         main_list = []
         for x in mongo_object.find():
@@ -81,8 +81,9 @@ class Fetch():
 
 fetch = Fetch()
 while 1:
-    time.sleep()
     print(fetch.RunEngine())
+    time.sleep(300)
+
 
 #fetch.SourcesAdd("http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=0fc0e9b54d5d4389b807d66a86fcee50","GoogleNews")
 #fetch.SourcesAdd("http://newsapi.org/v2/top-headlines?country=in&apiKey=0fc0e9b54d5d4389b807d66a86fcee50","TheHindu")
