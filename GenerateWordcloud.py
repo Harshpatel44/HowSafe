@@ -1,5 +1,6 @@
 from wordcloud import WordCloud,STOPWORDS
 import DbConnect
+import datetime
 import matplotlib
 matplotlib.use('Agg')
 
@@ -32,7 +33,7 @@ class Cloud():
                 matplotlib.pyplot.imshow(wordcloud)
                 matplotlib.pyplot.axis("off")
                 matplotlib.pyplot.tight_layout(pad = 0)
-                matplotlib.pyplot.savefig("wordclouds/"+str(i[0])+'.PNG')
+                matplotlib.pyplot.savefig("wordclouds/"+str(i[0])+str(datetime.datetime.now().date())+'.PNG')
                 del wordcloud
             print(str(i[0])+" wordcloud complete")
 
