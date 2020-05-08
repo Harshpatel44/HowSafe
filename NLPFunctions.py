@@ -28,6 +28,7 @@ class Functions:
 
     #removes unneccesary texts and symboles
     def FilterSentences(self,data):
+        data=data.lower()
         filtered=re.subn('[^a-zA-Z\.\,\s<>][\xa0\r\n]*',' ',data)
         filtered=re.subn('[\.]',' . ',filtered[0])
         filtered = re.subn('<br>', ' <br> ', filtered[0])
@@ -62,7 +63,7 @@ class Functions:
 
         # adding all the words from the text file to the unwanted_words set.
         unwanted_words=set()
-        for i in ["JJ","NN","NNS","others"]:
+        for i in ["JJ","NN","NNS","others","alphabets"]:
             with open("NLPFiles/"+str(i)+".txt") as f:
                 # pos_words=self.posWords(data, str(i))
                 unwanted_words.update(f.read().split())
@@ -78,6 +79,15 @@ class Functions:
             main_set.add(name)
         # Now we subtract it from the main set.
         clean_words = main_set - unwanted_words
+
+        #deleting all the 2 letter words
+        temp=set()
+        for i in clean_words:
+            f=re.match("^..$",i)
+            if(f!=None):
+                temp.add(i)
+        clean_words = clean_words - temp
+        del temp
         return clean_words
 
 
