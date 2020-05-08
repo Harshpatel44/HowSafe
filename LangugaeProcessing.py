@@ -33,17 +33,21 @@ class NltkProcessing():
         mongo_object = mongo_object["processed_data"]
         data=self.dict['GoogleNews']
 
+
         #removed unwanted symbols
         filtered=func.FilterSentences(func(),data)
+
         #split the files
         sentences =filtered.split("<br>")
+
         #removed stopwords
         stopwords=func.StopWords(func(),sentences)
-        #pos tag functions
-        pos_tag=func.pos_tags_removal(func(),stopwords)
-        input()
+
+        #remove unwanted words
+        mainWords=func.unwantedWordsRemoval(func(),stopwords)
+
         #find frequency of words
-        frequency=func.FrequencyWords(func(),stopwords)
+        frequency=func.FrequencyWords(func(),mainWords)
         print(frequency)
 
 

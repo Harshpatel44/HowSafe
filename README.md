@@ -4,6 +4,6 @@
 2. Remove duplicates in the tokens
 3. Lematize the words before finding frequency of them
 4. Remove numbers and symbols from frequency of words
-5. Remove the pos tags
+5. Remove the pos tags (removed tags [VBD, IN, DT] and removed unwanted words from tags [JJ,NN,NNS], kept [JJS] unchanged. )
 6. Remove stop words
 7. Find frequency of words
