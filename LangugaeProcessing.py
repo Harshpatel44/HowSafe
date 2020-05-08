@@ -43,12 +43,12 @@ class NltkProcessing():
         #removed stopwords
         stopwords=func.StopWords(func(),sentences)
 
-        #remove unwanted words
-        mainWords=func.unwantedWordsRemoval(func(),stopwords)
+        # find frequency of words
+        frequency = func.FrequencyWords(func(), stopwords)
 
-        #find frequency of words
-        frequency=func.FrequencyWords(func(),mainWords)
-        print(frequency)
+        #remove unwanted words
+        cleanWords=func.unwantedWordsRemoval(func(),frequency[:50])
+        print(cleanWords)
 
 
 
