@@ -56,7 +56,7 @@ class NltkProcessing():
                 mongo_object.remove({"tag":i,"date_stamp": str(datetime.datetime.now().date())})
                 print("removed")
 
-            mongo_object.insert({"tag":i,"content":cleanWords,"date_stamp":str(datetime.datetime.now().date())})
+            mongo_object.insert({"tag":i,"content":repr(cleanWords),"date_stamp":str(datetime.datetime.now().date())})
             print(str(i)+"complete")
 
         # connection.close()
