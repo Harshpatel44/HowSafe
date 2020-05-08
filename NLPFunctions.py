@@ -28,14 +28,10 @@ class Functions:
 
     #removes unneccesary texts and symboles
     def FilterSentences(self,data):
-        print(data)
-        input()
-        filtered=re.subn('[^a-zA-Z\.\,\s](^br\>)[\xa0\r\n]*',' ',data)
+        filtered=re.subn('[^a-zA-Z\.\,\s<>][\xa0\r\n]*',' ',data)
         filtered=re.subn('[\.]',' . ',filtered[0])
         filtered = re.subn('<br>', ' <br> ', filtered[0])
         d=re.findall("\(",filtered[0])
-        print(d)
-        input()
         return filtered[0]
 
 
@@ -47,14 +43,16 @@ class Functions:
 
     #to return a specific pos words
     def posWords(self,data,pos_tag):
+        # removing frequencies
+        data=[word for freq,word in data]
+        #pos_tagging
+        words_tag = nltk.pos_tag(data)
+
         temp=[]
-        words_tag = [nltk.pos_tag(word) for name,word in data]
         for j in words_tag:
-            for name, tag in j:
-                if (tag == pos_tag):
-                    temp.append(name)
-                else:
-                    pass
+            name,tag = j
+            if (tag == pos_tag):
+                temp.append(name)
         return temp
 
 
@@ -64,7 +62,7 @@ class Functions:
 
         # adding all the words from the text file to the unwanted_words set.
         unwanted_words=set()
-        for i in ["JJ","NN","NNS"]:
+        for i in ["JJ","NN","NNS","others"]:
             with open("NLPFiles/"+str(i)+".txt") as f:
                 # pos_words=self.posWords(data, str(i))
                 unwanted_words.update(f.read().split())
@@ -78,8 +76,6 @@ class Functions:
         main_set=set()
         for freq,name in data:
             main_set.add(name)
-        input()
-        print(main_set)
         # Now we subtract it from the main set.
         clean_words = main_set - unwanted_words
         return clean_words

@@ -30,54 +30,39 @@ class NltkProcessing():
                             3. Pos tag for each word
         """
         mongo_object, connection = DbConnect.Database.ConnectMongo(DbConnect.Database())
-        mongo_object = mongo_object["processed_data"]
-        data=self.dict['GoogleNews']
-
-
-        #removed unwanted symbols
-        filtered=func.FilterSentences(func(),data)
-
-        #split the files
-        sentences =filtered.split("<br>")
-
-        #removed stopwords
-        stopwords=func.StopWords(func(),sentences)
-
-        # find frequency of words
-        frequency = func.FrequencyWords(func(), stopwords)
-
-        #remove unwanted words
-        cleanWords=func.unwantedWordsRemoval(func(),frequency[:50])
-        print(cleanWords)
-
-
-
-        input()
+        mongo_object = mongo_object["processedTags"]
         for i in self.dict:
-            data=self.dict[i]
-            sentences = data.split("<br>")
-            stopwords=func.StopWords(func(), sentences)
-            input()
-            #words_tag = [nltk.pos_tag(word) for word in words]
-            #temp=""
-            #pos tagging
-            # for j in words_tag:
-            #     for name, tag in j:
-            #         if (tag == "NNP" or tag == "NN" or tag == "NNS"):
-            #             temp += str(name) + " "
+            #data=self.dict["GeneralNews"]
+            data=self.dict['GoogleNews']
 
-            #mongo_object.remove({"tag":i})
-            print("removed")
-            if(mongo_object.find({"tag":i,"date_stamp":str(datetime.datetime.now().date())}).count()!=0):
-                print("data already exists")
-                mongo_object.remove({"tag":i,"date_stamp": str(datetime.datetime.now().date())})
-                print("removed")
+            #removed unwanted symbols
+            filtered=func.FilterSentences(func(),data)
 
-            mongo_object.insert({"tag":i,"content":temp,"date_stamp":str(datetime.datetime.now().date())})
-            print(str(i)+"complete")
+            #split the files
+            sentences =filtered.split("<br>")
 
-        connection.close()
-        print("Information Extraction complete")
+            #removed stopwords
+            stopwords=func.StopWords(func(),sentences)
+
+            # find frequency of words
+            frequency = func.FrequencyWords(func(), stopwords)
+
+            #remove unwanted words
+            cleanWords=func.unwantedWordsRemoval(func(),frequency[:50])
+            print(cleanWords)
+        input()
+        # mongo_object.remove({"tag":})
+        # print("removed")
+        # if(mongo_object.find({"tag":i,"date_stamp":str(datetime.datetime.now().date())}).count()!=0):
+        #     print("data already exists")
+        #     mongo_object.remove({"tag":i,"date_stamp": str(datetime.datetime.now().date())})
+        #     print("removed")
+        #
+        # mongo_object.insert({"tag":i,"content":temp,"date_stamp":str(datetime.datetime.now().date())})
+        # print(str(i)+"complete")
+        #
+        # connection.close()
+        # print("Information Extraction complete")
 
     #get all the source tags
     def FindTags(self):

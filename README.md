@@ -8,3 +8,6 @@
 6. Remove stop words
 7. Find frequency of words
 8. count 2-gram and 3-gram frequency of words
+
+Notes:
+First I planned to remove the some POS_TAG words from the list, but
