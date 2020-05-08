@@ -20,7 +20,6 @@ class NltkProcessing():
         connection.close()
         print("PrepareData complete")
 
-
     # language processing on prepared data
     def InfoExtract(self):
         print("Information Extraction start")
@@ -32,16 +31,21 @@ class NltkProcessing():
         """
         mongo_object, connection = DbConnect.Database.ConnectMongo(DbConnect.Database())
         mongo_object = mongo_object["processed_data"]
-
-
-
         data=self.dict['GoogleNews']
 
+        #removed unwanted symbols
         filtered=func.FilterSentences(func(),data)
+        #split the files
         sentences =filtered.split("<br>")
+        #removed stopwords
         stopwords=func.StopWords(func(),sentences)
+        #pos tag functions
+        pos_tag=func.pos_tags_removal(func(),stopwords)
+        input()
+        #find frequency of words
         frequency=func.FrequencyWords(func(),stopwords)
         print(frequency)
+
 
 
         input()
@@ -60,16 +64,17 @@ class NltkProcessing():
 
             #mongo_object.remove({"tag":i})
             print("removed")
-            # if(mongo_object.find({"tag":i,"date_stamp":str(datetime.datetime.now().date())}).count()!=0):
-            #     print("data already exists")
-            #     mongo_object.remove({"tag":i,"date_stamp": str(datetime.datetime.now().date())})
-            #     print("removed")
+            if(mongo_object.find({"tag":i,"date_stamp":str(datetime.datetime.now().date())}).count()!=0):
+                print("data already exists")
+                mongo_object.remove({"tag":i,"date_stamp": str(datetime.datetime.now().date())})
+                print("removed")
 
-            # mongo_object.insert({"tag":i,"content":temp,"date_stamp":str(datetime.datetime.now().date())})
-            # print(str(i)+"complete")
+            mongo_object.insert({"tag":i,"content":temp,"date_stamp":str(datetime.datetime.now().date())})
+            print(str(i)+"complete")
 
         connection.close()
         print("Information Extraction complete")
+
     #get all the source tags
     def FindTags(self):
         mongo_object, connection = DbConnect.Database.ConnectMongo(DbConnect.Database())

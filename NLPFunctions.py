@@ -31,9 +31,30 @@ class Functions:
         words = [word_tokenize(sent) for sent in data]
         return words
 
+    def pos_tags_removal(self,data):
+        temp=[]
+        words_tag = [nltk.pos_tag(word) for word in data]
+        print(words_tag)
+        input()
+        """
+        to keep: JJS
+        to remove: VBD, IN, DT,
+        lockdown
+        """
+        for j in words_tag:
+            for name, tag in j:
+                #if (tag == "NNP" or tag == "NN" or tag == "NNS"):
+                if (tag == "NNS"):
+                    print(name+" "+tag)
+                    # temp.append(name)
+                else:
+                    pass
+                    # temp.append(name)
+        print(temp)
     # takes sentences as input and returns a list of list of stop-words
     def StopWords(self, data):
         stop_words = set(stopwords.words("english"))
+
         words=self.WordTokenize(data)
         filtered_lists = []
         for i in words:
@@ -44,3 +65,6 @@ class Functions:
             filtered_lists.append(temp)
         return filtered_lists
 
+    def remove_keys(self,data):
+        list=[',','.','number','rate',')','(','?','also','new','in','total','as','a','non','one','says','without','way',
+              'toll','tally','days','far','li','last','fresh','set','rose','per','open','month','hours']
