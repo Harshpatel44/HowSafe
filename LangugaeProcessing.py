@@ -11,11 +11,19 @@ class NltkProcessing():
     # preparing data for language processing. Creating dictionary of different tags.
     def PrepareData(self):
         tags,mongo_object,connection=self.FindTags()
-
         for i in tags:
             temp = ""
-            for j in mongo_object.find({"tag": i})[0]["content"]:
-                temp+=str(j['description'])+"<br>"
+            for j in mongo_object.find({"tag": i,
+                                        "$or":
+                                             [
+                                                 {"content.date_stamp": str(datetime.datetime.now().date())},
+                                                 {"content.date_stamp": str(datetime.datetime.now().date() - datetime.timedelta(days=1))},
+
+                                            ]
+                                        }):
+                #for k in j:
+                for k in j['content']:
+                    temp+=str(k['description'])+"<br>"
             self.dict[i]=temp
         connection.close()
         print("PrepareData complete")
