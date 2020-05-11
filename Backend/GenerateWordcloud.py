@@ -11,9 +11,9 @@ class Cloud():
         self.content=[]
 
     #preparing data for wordcloud
-    def PrepareData(self):
+    def prepareData(self):
         mongo_object, connection=DbConnect.Database.ConnectMongo(DbConnect.Database())
-        mongo_object=mongo_object["processed_data"]
+        mongo_object=mongo_object["processedTags"]
 
         for i in mongo_object.find():
             self.tag.append(i["tag"])
@@ -21,7 +21,7 @@ class Cloud():
         connection.close()
 
     #generating wordcloud
-    def generate_graph(self):
+    def generateGraph(self):
         stopwords = set(STOPWORDS)
         for i in zip(self.tag,self.content):
             if(i[1]!=""):
@@ -38,5 +38,5 @@ class Cloud():
             print(str(i[0])+" wordcloud complete")
 
 cloud=Cloud()
-cloud.PrepareData()
-cloud.generate_graph()
+cloud.prepareData()
+cloud.generateGraph()

@@ -10,9 +10,8 @@ class Functions:
     def __init__(self):
         pass
 
-
     # takes sentences as input and returns dictionary of frequency of words
-    def FrequencyWords(self, data):
+    def frequencyWords(self, data):
         dict = {}
         for i in data:
             for j in i:
@@ -27,7 +26,7 @@ class Functions:
 
 
     #removes unneccesary texts and symboles
-    def FilterSentences(self,data):
+    def filterSentences(self,data):
         data=data.lower()
         filtered=re.subn('[^a-zA-Z\.\,\s<>][\xa0\r\n]*',' ',data)
         filtered=re.subn('[\.]',' . ',filtered[0])
@@ -37,7 +36,7 @@ class Functions:
 
 
     #returns word tokens
-    def WordTokenize(self,data):
+    def wordTokenize(self,data):
         words = [word_tokenize(sent) for sent in data]
         return words
 
@@ -92,10 +91,10 @@ class Functions:
 
 
     # takes sentences as input and returns a list of list of stop-words
-    def StopWords(self, data):
+    def stopWords(self, data):
         stop_words = set(stopwords.words("english"))
 
-        words=self.WordTokenize(data)
+        words=self.wordTokenize(data)
         filtered_lists = []
         for i in words:
             temp = []
@@ -104,6 +103,8 @@ class Functions:
                     temp.append(w)
             filtered_lists.append(temp)
         return filtered_lists
+
+    def twoGrams(self,data):
 
 
 # string="India News  The home ministry on Friday permitted all shops in residential and market complexes outside municipal limits and all neighbourhood, standalone shops a.<br>Maharashtra, which is witnessing the fastest spread of the Coronavirus disease in India, has doubled its number of positive cases in the last one week."

@@ -9,8 +9,8 @@ class NltkProcessing():
         self.dict={}
 
     # preparing data for language processing. Creating dictionary of different tags.
-    def PrepareData(self):
-        tags,mongo_object,connection=self.FindTags()
+    def prepareData(self):
+        tags,mongo_object,connection=self.findTags()
         for i in tags:
             temp = ""
             for j in mongo_object.find({"tag": i,
@@ -29,7 +29,7 @@ class NltkProcessing():
         print("PrepareData complete")
 
     # language processing on prepared data
-    def InfoExtract(self):
+    def infoExtract(self):
         print("Information Extraction start")
         """
                         Information architecture first 3 steps:
@@ -37,27 +37,26 @@ class NltkProcessing():
                             2. Word tokenization
                             3. Pos tag for each word
         """
-        mongo_object, connection = DbConnect.Database.ConnectMongo(DbConnect.Database())
+        mongo_object, connection = DbConnect.Database.connectMongo(DbConnect.Database())
         mongo_object = mongo_object["processedTags"]
         for i in self.dict:
             data=self.dict[i]
 
             #removed unwanted symbols
-            filtered=func.FilterSentences(func(),data)
+            filtered=func.filterSentences(func(),data)
 
             #split the files
             sentences =filtered.split("<br>")
 
             #removed stopwords
-            stopwords=func.StopWords(func(),sentences)
+            stopwords=func.stopWords(func(),sentences)
 
             # find frequency of words
-            frequency = func.FrequencyWords(func(), stopwords)
+            frequency = func.frequencyWords(func(), stopwords)
 
             #remove unwanted words
             cleanWords=func.unwantedWordsRemoval(func(),frequency[:70])
             print(cleanWords)
-
 
             if(mongo_object.find({"tag":i,"date_stamp":str(datetime.datetime.now().date())}).count()!=0):
 
@@ -67,18 +66,14 @@ class NltkProcessing():
             mongo_object.insert({"tag":i,"content":repr(cleanWords),"date_stamp":str(datetime.datetime.now().date())})
             print(str(i)+"complete")
 
-        # connection.close()
-        # print("Information Extraction complete")
-
     #get all the source tags
-    def FindTags(self):
-        mongo_object, connection = DbConnect.Database.ConnectMongo(DbConnect.Database())
+    def findTags(self):
+        mongo_object, connection = DbConnect.Database.connectMongo(DbConnect.Database())
         mongo_object = mongo_object["data"]
         tags=mongo_object.distinct('tag')
         return tags,mongo_object,connection
 
 nltk_processing=NltkProcessing()
-nltk_processing.PrepareData()
-nltk_processing.InfoExtract()
-#print(process_data.count)
+nltk_processing.prepareData()
+nltk_processing.infoExtract()
 

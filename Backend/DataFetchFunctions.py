@@ -14,12 +14,12 @@ class Fetch():
         self.flag = True
 
     # print sources
-    def ShowCollection(self, collection):
-        DbConnect.Database.ShowMongo(DbConnect.Database(), collection)
+    def showCollection(self, collection):
+        DbConnect.Database.showMongo(DbConnect.Database(), collection)
 
     # storing data to mongodb
     def dataAdd(self, list):
-        mongo_object, connection = DbConnect.Database.ConnectMongo(DbConnect.Database())
+        mongo_object, connection = DbConnect.Database.connectMongo(DbConnect.Database())
         mongo_object = mongo_object['data']
 
         """list is the current fetched data. this is to check if the current fetched data already exists in the db. if it exists
@@ -35,10 +35,13 @@ class Fetch():
                     mongo_object.insert(i1)
                     print("new tag news found, all news inserted")
                 else:
-                    for j1 in mongo_object.find({"$or": [{"content.date_stamp": str(datetime.datetime.now().date())}, {
-                        "content.date_stamp": str(datetime.datetime.now().date() - datetime.timedelta(days=1))},
-                                                         {"tag": i1['tag']}],
-                                                 "tag": i1['tag']}):
+                    for j1 in mongo_object.find(
+                            {"$or": [
+                                        {"content.date_stamp": str(datetime.datetime.now().date())},
+                                        {"content.date_stamp": str(datetime.datetime.now().date() - datetime.timedelta(days=1))},
+                                        {"tag": i1['tag']}
+                                    ],
+                                         "tag": i1['tag']}):
                         for i2 in i1['content']:
                             flag = True
                             for j2 in j1['content']:
@@ -52,18 +55,18 @@ class Fetch():
         return 'data updated'
 
     # main program which handles fetching sources, fetching data from sources, storing in mongo
-    def RunEngine(self):
-        mongo_object, connection = DbConnect.Database.ConnectMongo(DbConnect.Database())
+    def runEngine(self):
+        mongo_object, connection = DbConnect.Database.connectMongo(DbConnect.Database())
         mongo_object = mongo_object['data_sources']
         main_list = []
         for x in mongo_object.find():
-            main_list.append(self.FetchFromUrl([x['tag'], x['url']]))
+            main_list.append(self.fetchFromUrl([x['tag'], x['url']]))
         connection.close()
         response = self.dataAdd(main_list)
         return response
 
     # program to fetch data from sources
-    def FetchFromUrl(self, url):
+    def fetchFromUrl(self, url):
         list = []
         response = requests.get(url[1])
         data = json.loads(response.text)
@@ -89,7 +92,7 @@ class Fetch():
 
 fetch = Fetch()
 while 1:
-    print(fetch.RunEngine())
+    print(fetch.runEngine())
     time.sleep(10000)
 
 # fetch.SourcesAdd("http://newsapi.org/v2/top-headlines?sources=google-news-in&apiKey=0fc0e9b54d5d4389b807d66a86fcee50","GoogleNews")
