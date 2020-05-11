@@ -6,33 +6,49 @@ import re
 # This class contains functions required for language processing.
 class Functions:
 
-
     def __init__(self):
         pass
 
-    # takes sentences as input and returns dictionary of frequency of words
+    # Creating 1-Grams of tokens and finding their frequency
     def oneGramsFrequency(self, data):
-        dict = {}
+        wordsDictionary = {}
         for i in data:
             for j in i:
-                if (j not in dict):
-                    dict[j] = 1
+                if (j not in wordsDictionary):
+                    wordsDictionary[j] = 1
                 else:
-                    dict[j] += 1
-        sortedList=[(dict[key], key) for key in dict]
+                    wordsDictionary[j] += 1
+        sortedList=[(wordsDictionary[key], key) for key in wordsDictionary]
         sortedList.sort()
         sortedList.reverse()
         return sortedList
 
+    #creating 2-Grams of tokens and finding their frequency
     def twoGramsFrequency(self, data):
         twoGramsList=[]
-        tokens=self.wordTokenize(data)
+        removeWordsList=[",", ".",">","<"]
+        # tokens=self.wordTokenize(data)
+        tokens=data
         for i in tokens:
             for k,l in zip(i,i[1:]):
-                twoGramsList.append((str(k)+" "+str(l)))
-        
-        print(twoGramsList)
-        input()
+                if(k in removeWordsList or l in removeWordsList):
+                    pass
+                else:
+                    twoGramsList.append((str(k)+" "+str(l)))
+        #print(twoGramsList)
+        #finding frequency
+        wordsDictionary = {}
+        for i in twoGramsList:
+            if (i not in wordsDictionary):
+                wordsDictionary[i] = 1
+            else:
+                wordsDictionary[i] += 1
+        sortedList = [(wordsDictionary[key], key) for key in wordsDictionary]
+        sortedList.sort()
+        sortedList.reverse()
+
+        #print(sortedList)
+
         return twoGramsList
 
     #removes unneccesary texts and symboles

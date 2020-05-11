@@ -48,11 +48,12 @@ class NltkProcessing():
             # split the files
             sentences =filtered.split("<br>")
 
-
-            twoGramsFrequency=func.twoGramsFrequency(func(),sentences)
-
             # removed stopwords
             stopwords=func.stopWords(func(),sentences)
+
+            # find frequency of twoGrams words
+            twoGramsFrequency = func.twoGramsFrequency(func(), stopwords)
+            print(twoGramsFrequency[:40])
 
             # find frequency of oneGram words
             oneGramsFrequency = func.oneGramsFrequency(func(), stopwords)
