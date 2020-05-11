@@ -48,18 +48,17 @@ class NltkProcessing():
             # split the files
             sentences =filtered.split("<br>")
 
-            twoGrams=func.twoGrams(func(),sentences)
 
+            twoGramsFrequency=func.twoGramsFrequency(func(),sentences)
 
-            input()
             # removed stopwords
             stopwords=func.stopWords(func(),sentences)
 
-            # find frequency of words
-            frequency = func.oneGrams(func(), stopwords)
+            # find frequency of oneGram words
+            oneGramsFrequency = func.oneGramsFrequency(func(), stopwords)
 
             # remove unwanted words
-            cleanWords=func.unwantedWordsRemoval(func(),frequency[:70])
+            cleanWords=func.unwantedWordsRemoval(func(),oneGramsFrequency[:70])
             print(cleanWords)
 
             if(mongo_object.find({"tag":i,"date_stamp":str(datetime.datetime.now().date())}).count()!=0):

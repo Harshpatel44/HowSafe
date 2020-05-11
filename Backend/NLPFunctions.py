@@ -11,7 +11,7 @@ class Functions:
         pass
 
     # takes sentences as input and returns dictionary of frequency of words
-    def oneGrams(self, data):
+    def oneGramsFrequency(self, data):
         dict = {}
         for i in data:
             for j in i:
@@ -24,12 +24,15 @@ class Functions:
         sortedList.reverse()
         return sortedList
 
-    def twoGrams(self, data):
+    def twoGramsFrequency(self, data):
         twoGramsList=[]
         tokens=self.wordTokenize(data)
         for i in tokens:
             for k,l in zip(i,i[1:]):
                 twoGramsList.append((str(k)+" "+str(l)))
+        
+        print(twoGramsList)
+        input()
         return twoGramsList
 
     #removes unneccesary texts and symboles
