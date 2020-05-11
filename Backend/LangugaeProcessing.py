@@ -42,24 +42,27 @@ class NltkProcessing():
         for i in self.dict:
             data=self.dict[i]
 
-            #removed unwanted symbols
+            # removed unwanted symbols
             filtered=func.filterSentences(func(),data)
 
-            #split the files
+            # split the files
             sentences =filtered.split("<br>")
 
-            #removed stopwords
+            twoGrams=func.twoGrams(func(),sentences)
+
+
+            input()
+            # removed stopwords
             stopwords=func.stopWords(func(),sentences)
 
             # find frequency of words
-            frequency = func.frequencyWords(func(), stopwords)
+            frequency = func.oneGrams(func(), stopwords)
 
-            #remove unwanted words
+            # remove unwanted words
             cleanWords=func.unwantedWordsRemoval(func(),frequency[:70])
             print(cleanWords)
 
             if(mongo_object.find({"tag":i,"date_stamp":str(datetime.datetime.now().date())}).count()!=0):
-
                 mongo_object.remove({"tag":i,"date_stamp": str(datetime.datetime.now().date())})
                 print("data already exists for today, removed")
 
