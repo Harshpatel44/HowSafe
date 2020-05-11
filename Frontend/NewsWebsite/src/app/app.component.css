@@ -1,0 +1,30 @@
+.HomeDiv{
+    height: auto;
+    width: auto;
+}
+
+.TopBar{
+    width: 100%;
+    margin: auto;
+    padding: 10px 0;
+    /* border:1px solid black; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #0F2027, #203A43, #2C5364);
+    font-size: 30px;
+    color:white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.TagsBar{
+    width: 100%;
+    margin: auto;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}

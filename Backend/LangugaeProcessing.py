@@ -53,7 +53,7 @@ class NltkProcessing():
 
             # find frequency of twoGrams words
             twoGramsFrequency = func.twoGramsFrequency(func(), stopwords)
-            print(twoGramsFrequency[:40])
+            print(twoGramsFrequency[:50])
 
             # find frequency of oneGram words
             oneGramsFrequency = func.oneGramsFrequency(func(), stopwords)
