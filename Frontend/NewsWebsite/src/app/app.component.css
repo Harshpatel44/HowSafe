@@ -1,11 +1,10 @@
 .HomeDiv{
     height: auto;
-    width: auto;
+    width: 100%;    
 }
 
 .TopBar{
     width: 100%;
-    margin: auto;
     padding: 10px 0;
     /* border:1px solid black; */
     display: flex;
@@ -18,13 +17,3 @@
 }
 
 
-.TagsBar{
-    width: 100%;
-    margin: auto;
-    padding: 10px 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 30px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-}

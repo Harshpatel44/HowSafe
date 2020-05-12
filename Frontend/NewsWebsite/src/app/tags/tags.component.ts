@@ -7,7 +7,44 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TagsComponent implements OnInit {
 
-  public tags="";
+  public tags=[
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'ko', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+    ];
   constructor() { }
 
   ngOnInit(): void {
