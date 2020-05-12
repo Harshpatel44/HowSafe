@@ -15,10 +15,11 @@
     width: 46%;
     /* border:1px solid #2C5364; */
     border-right:1px solid #2C5364;
+    border-top:1px solid #2C5364;
     border-radius: 2px;
     margin-left: 2%;
     margin-top: 2%;
-    padding:5px;
+    padding:1px;
     display: flex;
     float:left;
     justify-content: center;
@@ -41,14 +42,14 @@
 
 #newsDescription{
     width: 80%;
-    padding:10px;
+    padding:5px;
 }
 
 #newsHeading{
     width: 100%;
     height: 40%;
     /* border:1px solid red; */
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: 17px;
     font-weight: 600;
     overflow: hidden;
@@ -69,4 +70,15 @@
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    margin-bottom: 5px;
+}
+#newsPublishedAt{
+    margin-right:10px;
+    float: left;
+    font-size: 12px;
+}
+
+#newsSource{
+    float: right;
+    font-size: 12px;
 }

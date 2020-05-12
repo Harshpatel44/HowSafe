@@ -12,8 +12,9 @@ export class SideBarComponent implements OnInit {
     {"name":"General News"},
     {"name":"Sports News"},
     {"name":"Entertainment News"},
-    {"name":"Technical News"},
+    {"name":"Technology News"},
     {"name":"Science News"},
+    {"name":"Business News"},
   ]
   ngOnInit(): void {
   }
