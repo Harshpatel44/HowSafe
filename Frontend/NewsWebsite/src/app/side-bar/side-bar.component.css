@@ -1,9 +1,40 @@
 .SideBar{
-    background-color: black;
+    background-color: #D0CFCF;
     width: 15%;
-    height: 500px;
     float:right;
-    position: relative;
-    top:150px;
-    z-index: -1;
+    position: fixed;
+    border-radius: 1px;
+    top:175px;
+    right:0px;
+    z-index: 1;
+}
+
+#CategoryHeading{
+    background-image: linear-gradient(to bottom, #0F2027, #203A43, #2C5364);
+    padding:10px 0px;
+    text-align: center;
+    border-bottom:1px solid #2C5364;
+    margin-bottom: 15px;
+}
+
+#heading{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:white;
+    font-weight: 600;
+    font-size: 23px;
+}
+
+#categoryList{
+    padding:0px;
+    text-align: center;
+    background-color: #D0CFCF;
+}
+#categories{
+    font-size: 17px;
+    padding:10px 0px;
+    border-bottom:1px solid #2C5364;
+}
+
+#categories:hover{
+    background-color: white;
 }

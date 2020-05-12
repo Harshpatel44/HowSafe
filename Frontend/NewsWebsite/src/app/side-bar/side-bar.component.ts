@@ -8,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class SideBarComponent implements OnInit {
 
   constructor() { }
-
+  public categories=[
+    {"name":"General News"},
+    {"name":"Sports News"},
+    {"name":"Entertainment News"},
+    {"name":"Technical News"},
+    {"name":"Science News"},
+  ]
   ngOnInit(): void {
   }
 

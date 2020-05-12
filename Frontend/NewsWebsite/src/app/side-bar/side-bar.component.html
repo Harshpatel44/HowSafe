@@ -1,3 +1,10 @@
 <div class="SideBar">
-    
+    <div id="CategoryHeading">
+        <span id="heading">Categories</span>
+    </div>
+    <ul id="categoryList">
+        <li id="categories" *ngFor="let c of categories">
+            <a href="">{{c.name}}</a>
+        </li>
+    </ul>
 </div>
