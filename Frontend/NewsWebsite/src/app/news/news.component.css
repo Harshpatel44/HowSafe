@@ -1,7 +1,7 @@
 .NewsBar{
     width: 85%;
     height: auto;
-    
+    float: left;
 }
 
 #newsList{
