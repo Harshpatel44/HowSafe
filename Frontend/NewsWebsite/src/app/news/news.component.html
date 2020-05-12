@@ -1,1 +1,13 @@
-<p>news works!</p>
+<div class="NewsBar">
+    <ul id="newsList">
+        <li id="list" *ngFor="let news of listNews">
+            <div id="newsImageDiv">
+                <img id="newsImage" src="{{news.imageUrl}}">
+            </div>
+            <ul id="newsDescription">
+                <li id="newsHeading"><a href="{{news.url}}">{{news.heading}}</a></li>
+                <li id="newsDescribe">{{news.description}}</li>
+            </ul>
+        </li>
+    </ul>
+</div>

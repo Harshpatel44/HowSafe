@@ -21,12 +21,16 @@
     margin:7px 10px 7px 10px;
     padding:5px 5px 5px 5px;
     border-radius: 2px;
+   
     
 }
+/* #tag:hover{
+    background-color: #222222;
+    color:#cccccc;
+} */
 
-#tagLink{
+.tagLink{
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 16px;
     color: #222222;
-    
 }

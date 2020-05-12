@@ -1,7 +1,7 @@
 <div class="TagsBar">
     <ul id="ulTags">
         <li id="tag" *ngFor="let t of tags">
-            <a id="tagLink" href="{{t.url}}">{{t.name}}</a>
+            <a class="tagLink" #a id="{{t.name}}" href="{{t.url}}">{{t.name}}</a>
         </li>
     </ul>
 </div>
