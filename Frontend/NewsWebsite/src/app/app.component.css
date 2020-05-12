@@ -1,6 +1,8 @@
 .HomeDiv{
     height: auto;
     width: 100%;    
+    position: absolute;
+    z-index: 0;
 }
 
 .TopBar{
@@ -14,6 +16,8 @@
     font-size: 30px;
     color:white;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    top:0%;
+    position: fixed;
 }
 
 

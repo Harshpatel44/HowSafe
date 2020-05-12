@@ -1,6 +1,10 @@
 .TagsBar{
     padding:5px 0px;
+    background-color: white;
     border-bottom: 1px solid #2C5364;
+    top:8%;
+    position:fixed;
+    z-index: 0;
     /* background-image: linear-gradient(to right,#FFFDE4,#FFFFE4); */
 }
 

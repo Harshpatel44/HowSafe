@@ -2,6 +2,10 @@
     width: 85%;
     height: auto;
     float: left;
+    background-color: #F4F0F0;
+    position: relative;
+    top:150px;
+    z-index: -1;
 }
 
 #newsList{
@@ -52,7 +56,9 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
-
+#heading{
+    color: #111111;
+}
 #newsDescribe{
     width: 100%;
     /* border:1px solid #2C5364; */
