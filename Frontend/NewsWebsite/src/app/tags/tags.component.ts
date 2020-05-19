@@ -51,14 +51,15 @@ export class TagsComponent implements OnInit {
   constructor(private http: HttpClient, private CatService: CatService) { 
     
   }
-  
+  public tags2=[];
   sample(){
     console.log('harsh');
-    console.log(this.CatService.getCat("lucy"));
+    console.log(this.tags2);
   }
 
   ngOnInit(): void {
-   
+    this.CatService.getAllCats()
+      .subscribe(data=> this.tags2 = data);
   }
 
 }

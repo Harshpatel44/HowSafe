@@ -3,7 +3,6 @@ const path  =  require('path');
 const port = process.env.PORT || 3000;
 
 const app = require('./app');
-// const server = http.createServer(app);
 
 app.listen(port,function(){
     console.log('Server started')
