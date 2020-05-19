@@ -1,50 +1,53 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const path = require('path');
+const path = require('path')
 
 
 router.route('/').get((req, res) => {
   res.json(
-      [{"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'ko', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},]
-  )
+      [
+        {"name":'ko', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'ko', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+        {"name":'kohli', "url":""}, 
+        {"name":'virat', "url":""},
+      ]
+    )
 })
 
+module.exports = router
 
 
 
@@ -81,4 +84,3 @@ router.route('/').get((req, res) => {
 
 
 
-module.exports = router;

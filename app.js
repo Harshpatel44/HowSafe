@@ -1,11 +1,16 @@
 const express = require('express');
 var cors = require('cors')
+
 const app = express();
+app.use(cors())
 
-const tags = require('./routes/tags');
+const tags = require('./routes/tags')
+const news = require('./routes/news')
+const categories = require('./routes/categories')
 
-app.use(cors());
-app.use('/tags',tags);
+app.use('/tags',tags)
+app.use('/news',news)
+app.use('/categories',categories)
 
 // app.use(express.static(__dirname + '/Frontend/NewsWebsite/dist/NewsWebsite'));
 

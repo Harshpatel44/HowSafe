@@ -11,20 +11,12 @@ import { RequestResponse } from '../app.service'
 
 export class TagsComponent implements OnInit {
   
-  constructor(private http: HttpClient, private tagsLocal: RequestResponse) { 
-    this.tagsLocal.getTags()
+  public tagsList=[];
+  constructor(private http: HttpClient, private requestResponse: RequestResponse) { 
+    this.requestResponse.getTags()
       .subscribe(data=> this.tagsList = data);
   }
-  public tagsList=[];
   
-
-
-
-  sample(){
-    console.log('harsh');
-    console.log(this.tagsList);
-  }
-
   ngOnInit(): void {
     
   }
