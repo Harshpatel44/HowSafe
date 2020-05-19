@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CatService } from './tags.service';
+import { RequestResponse } from '../app.service'
 
 @Component({
   selector: 'app-tags',
@@ -10,56 +10,23 @@ import { CatService } from './tags.service';
 
 
 export class TagsComponent implements OnInit {
-  public tags=[
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'ko', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-      {"name":'kohli', "url":""}, 
-      {"name":'virat', "url":""},
-    ];
-  constructor(private http: HttpClient, private CatService: CatService) { 
-    
+  
+  constructor(private http: HttpClient, private tagsLocal: RequestResponse) { 
+    this.tagsLocal.getTags()
+      .subscribe(data=> this.tagsList = data);
   }
-  public tags2=[];
+  public tagsList=[];
+  
+
+
+
   sample(){
     console.log('harsh');
-    console.log(this.tags2);
+    console.log(this.tagsList);
   }
 
   ngOnInit(): void {
-    this.CatService.getAllCats()
-      .subscribe(data=> this.tags2 = data);
+    
   }
 
 }

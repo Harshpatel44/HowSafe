@@ -3,27 +3,81 @@ const router = express.Router();
 
 const path = require('path');
 
-router.get('/',(req,res,next)=>{
-    res.send('tags recieved get')
-    console.log('tags post');
-    res.status(200).json({
-        message: "tags recieved get"
-        });
-});
 
-router.route('/cats').get((req, res) => {
-    res.send({
-      cats: [{ name: 'lilly' }, { name: 'lucy' }],
-    })
-  })
+router.route('/').get((req, res) => {
+  res.json(
+      [{"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'ko', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},
+      {"name":'kohli', "url":""}, 
+      {"name":'virat', "url":""},]
+  )
+})
 
-router.post('/',(req,res,next)=>{
-    res.send('tags recieved get')
-    console.log('tags post');
-    res.status(200).json({
-        message: "tags recieved post"
-    });
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// router.get('/',(req,res,next)=>{
+//   res.send({
+//     cats: [{ name: 'lilly' }, { name: 'lucy' }],
+//   })
+//     console.log('tags post');
+//     // res.status(200).json({
+//     //     message: "tags recieved get"
+//     //     });
+// });
+
+
+// router.post('/',(req,res,next)=>{
+//   res.send({
+//     cats: [{ name: 'lilly' }, { name: 'lucy' }],
+//   })
+//     console.log('tags post');
+    // res.status(200).json({
+    //     message: "tags recieved post"
+    // });
+// });
 
 
 

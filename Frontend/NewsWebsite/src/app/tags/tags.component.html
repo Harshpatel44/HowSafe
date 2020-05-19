@@ -1,8 +1,8 @@
 <div class="TagsBar">
     <ul id="ulTags">
-        <li id="tag" *ngFor="let t of tags">
+        <li id="tag" *ngFor="let t of tagsList">
             <a class="tagLink" #a id="{{t.name}}" href="{{t.url}}">{{t.name}}</a>
         </li>
     </ul>
-    <button value="Button1" style="font-size: 20px; width: 100px; height: 100px;" (click)=sample()>Button1</button>
+    <!-- <button value="Button1" style="font-size: 20px; width: 100px; height: 100px;" (click)=sample()>Button1</button> -->
 </div>

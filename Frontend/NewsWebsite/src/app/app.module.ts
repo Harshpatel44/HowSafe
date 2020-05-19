@@ -7,7 +7,7 @@ import { TagsComponent } from './tags/tags.component';
 import { NewsComponent } from './news/news.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { CatService } from './tags/tags.service';
+import { RequestResponse } from './app.service'
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { CatService } from './tags/tags.service';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [CatService],
+  providers: [RequestResponse],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
