@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { TagsComponent } from './tags/tags.component';
 import { NewsComponent } from './news/news.component';
 import { SideBarComponent } from './side-bar/side-bar.component';
+import { HttpClientModule } from '@angular/common/http';
+import { CatService } from './tags/tags.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { SideBarComponent } from './side-bar/side-bar.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CatService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

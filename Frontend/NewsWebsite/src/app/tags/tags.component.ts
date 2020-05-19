@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { CatService } from './tags.service';
 
 @Component({
   selector: 'app-tags',
   templateUrl: './tags.component.html',
   styleUrls: ['./tags.component.css']
 })
-export class TagsComponent implements OnInit {
 
+
+export class TagsComponent implements OnInit {
   public tags=[
       {"name":'kohli', "url":""}, 
       {"name":'virat', "url":""},
@@ -45,9 +48,17 @@ export class TagsComponent implements OnInit {
       {"name":'kohli', "url":""}, 
       {"name":'virat', "url":""},
     ];
-  constructor() { }
+  constructor(private http: HttpClient, private CatService: CatService) { 
+    
+  }
+  
+  sample(){
+    console.log('harsh');
+    console.log(this.CatService.getCat("lucy"));
+  }
 
   ngOnInit(): void {
+   
   }
 
 }
