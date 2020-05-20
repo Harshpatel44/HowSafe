@@ -2,11 +2,33 @@ const express = require('express')
 const router = express.Router()
 
 const path = require('path')
-var dbConnect = require('../databaseConnect')
+// var dbConnect = require('../databaseConnect')
+console.log('in tag file')
+router.get('/',function(req, res,next){
+  
+  var list=[]
+  const MongoClient = require('mongodb').MongoClient;
+  const uri = "mongodb+srv://root:root@news-jaoot.mongodb.net/test?retryWrites=true&w=majority";
+  const client = new MongoClient(uri, { useNewUrlParser: true });
 
-router.route('/').get((req, res) => {
-  res.json(
-      dbConnect.connect('news','data')
+  client.connect(err => {
+      const collection = client.db('news').collection('processedTags');
+      collection.find({tag:"GeneralNews"}).forEach(function(todo,err){
+            //  console.log(todo)
+              list.push(todo.content)
+           }, function(){
+            client.close();
+            console.log(JSON.parse(list[0]))
+            
+            res.json(JSON.parse(list[0]))
+           
+           })
+    });
+  
+  // res.json(
+
+  //     dbConnect.connect('news','data')
+      
       // [
       //   {"name":'ko', "url":""}, 
       //   {"name":'virat', "url":""},
@@ -45,7 +67,7 @@ router.route('/').get((req, res) => {
       //   {"name":'kohli', "url":""}, 
       //   {"name":'virat', "url":""},
       // ]
-    )
+//     )
 })
 
 module.exports = router

@@ -1,17 +1,21 @@
 
 
 exports.connect=function(dbName, collectionName){
-    jsonFile=[]
+    var jsonFile=[]
+    console.log('reached here')
     const MongoClient = require('mongodb').MongoClient;
     const uri = "mongodb+srv://root:root@news-jaoot.mongodb.net/test?retryWrites=true&w=majority";
     const client = new MongoClient(uri, { useNewUrlParser: true });
-    const collection = client.db("news").collection("dataSources");
+    
     
     client.connect(err => {
+        const collection = client.db(dbName).collection(collectionName);
         collection.find({}).toArray(function(err,todos){  
+            // console.log(todos)
           jsonFile = todos
           })
         client.close();
       });
-    return jsonFile
+      console.log(jsonFile)
+      return jsonFile
 }

@@ -1,6 +1,6 @@
 import DbConnect
 from NLPFunctions import Functions as func
-
+import json
 
 import datetime
 class NltkProcessing():
@@ -22,8 +22,8 @@ class NltkProcessing():
                                             ]
                                         }):
                 #for k in j:
-                for k in j['content']:
-                    temp+=str(k['description'])+"<br>"
+                for k in j["content"]:
+                    temp+=str(k["description"])+"<br>"
             self.dict[i]=temp
         connection.close()
         print("PrepareData complete")
@@ -60,20 +60,22 @@ class NltkProcessing():
 
             # remove unwanted words
             cleanWords=func.unwantedWordsRemoval(func(),oneGramsFrequency[:70])
-            print(cleanWords)
 
+            cleanWords=json.dumps(list(cleanWords))
+            print(cleanWords)
+            
             if(mongo_object.find({"tag":i,"date_stamp":str(datetime.datetime.now().date())}).count()!=0):
                 mongo_object.remove({"tag":i,"date_stamp": str(datetime.datetime.now().date())})
                 print("data already exists for today, removed")
 
-            mongo_object.insert({"tag":i,"content":repr(cleanWords),"date_stamp":str(datetime.datetime.now().date())})
+            mongo_object.insert({"tag":i,"content":cleanWords,"date_stamp":str(datetime.datetime.now().date())})
             print(str(i)+"complete")
 
     #get all the source tags
     def findTags(self):
         mongo_object, connection = DbConnect.Database.connectMongo(DbConnect.Database())
         mongo_object = mongo_object["data"]
-        tags=mongo_object.distinct('tag')
+        tags=mongo_object.distinct("tag")
         print(tags)
         return tags,mongo_object,connection
 

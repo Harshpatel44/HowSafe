@@ -1,5 +1,7 @@
 .TagsBar{
     padding:5px 0px;
+    height: 100px;
+    overflow: scroll;
     background-color: white;
     border-bottom: 5em solid #2C5364;
     top:8%;
@@ -24,7 +26,7 @@
     float: left;
     margin:7px 10px 7px 10px;
     padding:5px 5px 5px 5px;
-    border-radius: 2px;
+    border-radius: 15px;
    
     
 }

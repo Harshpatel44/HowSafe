@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RequestResponse } from '../app.service'
+import { strict } from 'assert';
 
 @Component({
   selector: 'app-tags',
@@ -11,12 +12,20 @@ import { RequestResponse } from '../app.service'
 
 export class TagsComponent implements OnInit {
   
-  public tagsList=[];
+  public tagsList=[]
   constructor(private http: HttpClient, private requestResponse: RequestResponse) { 
     this.requestResponse.getTags()
-      .subscribe(data=> this.tagsList = data);
+      .subscribe(data => this.tagsList = data)
   }
   
+  // sample(){
+  //   // var tagsList=this.tagsList[0].toString()
+  //   // console.log(tagsList)
+  //   // console.log(JSON.stringify(tagsList))
+
+
+  //   console.log(this.tagsList)
+  // }
   ngOnInit(): void {
     
   }

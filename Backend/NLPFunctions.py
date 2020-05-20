@@ -54,9 +54,9 @@ class Functions:
     #removes unneccesary texts and symboles
     def filterSentences(self,data):
         data=data.lower()
-        filtered=re.subn('[^a-zA-Z\.\,\s<>][\xa0\r\n]*',' ',data)
-        filtered=re.subn('[\.]',' . ',filtered[0])
-        filtered = re.subn('<br>', ' <br> ', filtered[0])
+        filtered=re.subn("[^a-zA-Z\.\,\s<>][\xa0\r\n]*"," ",data)
+        filtered=re.subn("[\.]"," . ",filtered[0])
+        filtered = re.subn("<br>", " <br> ", filtered[0])
         d=re.findall("\(",filtered[0])
         return filtered[0]
 
