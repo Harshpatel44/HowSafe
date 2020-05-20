@@ -21,18 +21,18 @@ class Sources():
 
     #add sources to mongo
     def SourcesAdd(self, source, tag):
-        mongo_object, connection = DbConnect.Database.ConnectMongo(DbConnect.Database())
-        mongo_object = mongo_object['data_sources']
+        mongo_object, connection = DbConnect.Database.connectMongo(DbConnect.Database())
+        mongo_object = mongo_object['dataSources']
         mongo_object.insert({"tag": tag, "url": source})
         connection.close()
 
     #print sources
     def ShowCollection(self,collection):
-        DbConnect.Database.ShowMongo(DbConnect.Database(),collection)
+        DbConnect.Database.showMongo(DbConnect.Database(),collection)
 
 
 sources=Sources()
 for i in sources_list:
     sources.SourcesAdd(i[0],i[1])
 
-sources.ShowCollection("data_sources")
+sources.ShowCollection("dataSources")

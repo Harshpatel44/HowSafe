@@ -2,48 +2,49 @@ const express = require('express')
 const router = express.Router()
 
 const path = require('path')
-
+var dbConnect = require('../databaseConnect')
 
 router.route('/').get((req, res) => {
   res.json(
-      [
-        {"name":'ko', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'ko', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-        {"name":'kohli', "url":""}, 
-        {"name":'virat', "url":""},
-      ]
+      dbConnect.connect('news','data')
+      // [
+      //   {"name":'ko', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'ko', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      //   {"name":'kohli', "url":""}, 
+      //   {"name":'virat', "url":""},
+      // ]
     )
 })
 

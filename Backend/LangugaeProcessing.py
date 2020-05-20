@@ -74,6 +74,7 @@ class NltkProcessing():
         mongo_object, connection = DbConnect.Database.connectMongo(DbConnect.Database())
         mongo_object = mongo_object["data"]
         tags=mongo_object.distinct('tag')
+        print(tags)
         return tags,mongo_object,connection
 
 nltk_processing=NltkProcessing()

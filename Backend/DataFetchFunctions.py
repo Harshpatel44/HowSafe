@@ -57,7 +57,7 @@ class Fetch():
     # main program which handles fetching sources, fetching data from sources, storing in mongo
     def runEngine(self):
         mongo_object, connection = DbConnect.Database.connectMongo(DbConnect.Database())
-        mongo_object = mongo_object['data_sources']
+        mongo_object = mongo_object['dataSources']
         main_list = []
         for x in mongo_object.find():
             main_list.append(self.fetchFromUrl([x['tag'], x['url']]))
